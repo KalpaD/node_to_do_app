@@ -5,6 +5,8 @@ var logger = require('winston');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// Configure the file logger
+logger.add(logger.transports.File, { 'filename' : 'todo_application.log', 'level': 'silly'});
 var dbUtil = require('./db_util');
 
 // data base lib
@@ -14,7 +16,7 @@ logger.info(`Connected to ${dbUtil.getDBConString()} successfully.`);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var user_mgr = require('./controller/user_mgr');
+var user_mgr = require('./controller/todoController');
 
 var app = express();
 
